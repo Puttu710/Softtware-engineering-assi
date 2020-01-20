@@ -14,9 +14,12 @@ public class StringArrayArgumentMarshaler implements ArgumentMarshaler {
       throw new ArgsException(MISSING_STRING);
     }
   }
+  private boolean CheckStringArrayArgumentMarshaler(ArgumentMarshaler am){
+    return (am!=null && am instanceof StringArrayArgumentMarshaler);
+   }
 
   public static String[] getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof StringArrayArgumentMarshaler)
+    if (CheckStringArrayArgumentMarshaler(am))
       return ((StringArrayArgumentMarshaler) am).strings.toArray(new String[0]);
     else
       return new String[0];
