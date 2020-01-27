@@ -1,5 +1,11 @@
 This is the java version of the Args program described in: http://butunclebob.com/ArticleS.UncleBob.CleanCodeArgs
 
+### Install/Update Java
+      * sudo add-apt-repository ppa:openjdk-r/ppa
+      * sudo apt-get update -q 
+      * sudo apt install -y openjdk-11-jdk 
+
+
 public class ArgsMain {
   public static void main(String[] args) {
     try {

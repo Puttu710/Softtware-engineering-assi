@@ -28,12 +28,8 @@ public class StringArrayArgumentMarshaler implements ArgumentMarshaler {
         return false;
   }
 
-  private boolean CheckStringArrayArgumentMarshaler(ArgumentMarshaler am){
-    return (instanceStringArrayArgument(am));
-   }
-
   public static String[] getValue(ArgumentMarshaler am) {
-    if (CheckStringArrayArgumentMarshaler(am)){
+    if (instanceStringArrayArgument(am)){
       return ((StringArrayArgumentMarshaler) am).strings.toArray(new String[0]);
     }
     else
