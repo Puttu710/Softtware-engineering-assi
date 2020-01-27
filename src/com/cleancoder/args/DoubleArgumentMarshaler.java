@@ -12,15 +12,25 @@ public class DoubleArgumentMarshaler implements ArgumentMarshaler {
     try {
       parameter = currentArgument.next();
       doubleValue = Double.parseDouble(parameter);
-    } catch (NoSuchElementException e) {
+    } 
+    catch (NoSuchElementException e) {
       throw new ArgsException(MISSING_DOUBLE);
-    } catch (NumberFormatException e) {
+    } 
+    catch (NumberFormatException e) {
       throw new ArgsException(INVALID_DOUBLE, parameter);
     }
   }
 
+  public boolean instanceDoubleArgument(ArgumentMarshaler am){
+    if(am != null)
+      if(am instanceof DoubleArgumentMarshaler)
+        return true;
+      else
+        return false;
+  }
+
   public static double getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof DoubleArgumentMarshaler)
+    if (instanceDoubleArgument(am))
       return ((DoubleArgumentMarshaler) am).doubleValue;
     else
       return 0.0;

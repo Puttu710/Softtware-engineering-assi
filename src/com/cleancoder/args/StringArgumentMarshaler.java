@@ -11,13 +11,22 @@ public class StringArgumentMarshaler implements ArgumentMarshaler {
   public void set(Iterator<String> currentArgument) throws ArgsException {
     try {
       stringValue = currentArgument.next();
-    } catch (NoSuchElementException e) {
+    } 
+    catch (NoSuchElementException e) {
       throw new ArgsException(MISSING_STRING);
     }
   }
 
+  public boolean instanceStringArgument(ArgumentMarshaler am){
+    if(am != null)
+      if(am instanceof StringArgumentMarshaler)
+        return true;
+      else
+        return false;
+  }
+
   public static String getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof StringArgumentMarshaler)
+    if (instanceStringArgument(am))
       return ((StringArgumentMarshaler) am).stringValue;
     else
       return "";

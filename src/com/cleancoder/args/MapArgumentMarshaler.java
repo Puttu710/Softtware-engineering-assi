@@ -19,13 +19,22 @@ public class MapArgumentMarshaler implements ArgumentMarshaler {
           throw new ArgsException(MALFORMED_MAP);
         map.put(entryComponents[0], entryComponents[1]);
       }
-    } catch (NoSuchElementException e) {
+    } 
+    catch (NoSuchElementException e) {
       throw new ArgsException(MISSING_MAP);
     }
   }
 
+  public boolean instanceMapArgument(ArgumentMarshaler am){
+    if(am != null)
+      if(am instanceof MapArgumentMarshaler)
+        return true;
+      else
+        return false;
+  }
+
   public static Map<String, String> getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof MapArgumentMarshaler)
+    if (instanceMapArgument(am))
       return ((MapArgumentMarshaler) am).map;
     else
       return new HashMap<>();

@@ -12,15 +12,25 @@ public class IntegerArgumentMarshaler implements ArgumentMarshaler {
     try {
       parameter = currentArgument.next();
       intValue = Integer.parseInt(parameter);
-    } catch (NoSuchElementException e) {
+    } 
+    catch (NoSuchElementException e) {
       throw new ArgsException(MISSING_INTEGER);
-    } catch (NumberFormatException e) {
+    } 
+    catch (NumberFormatException e) {
       throw new ArgsException(INVALID_INTEGER, parameter);
     }
   }
 
+  public boolean instanceIntegerArgument(ArgumentMarshaler am){
+    if(am != null)
+      if(am instanceof IntegerArgumentMarshaler)
+        return true;
+      else
+        return false;
+  }
+
   public static int getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof IntegerArgumentMarshaler)
+    if (instanceIntegerArgument(am))
       return ((IntegerArgumentMarshaler) am).intValue;
     else
       return 0;
